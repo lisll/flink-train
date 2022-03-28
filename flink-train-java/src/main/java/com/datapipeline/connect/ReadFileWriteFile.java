@@ -56,6 +56,7 @@ public class ReadFileWriteFile {
           }
       });
 //        operator.print();
+
       operator.global().writeAsText(output, FileSystem.WriteMode.OVERWRITE);
       senv.execute();
   }
