@@ -1,0 +1,30 @@
+# Project exclude paths
+# Project exclude paths
+**/.idea/
+**/.gradle/
+**/log/
+**/logs
+*.iml
+**/.DS_Store
+**/.factorypath
+*.swp
+*.swo
+*.log
+*.ipr
+*.iws
+**/logs/
+**/bin/
+**/build
+**/target
+**/.project
+**/.vagrant
+**/.classpath
+**/.settings
+**/.gradletasknamecache
+*.key
+~*.doc
+*.pdb
+**/node_modules
+**/.docker/
+**/libs/
+**/.vertx/
