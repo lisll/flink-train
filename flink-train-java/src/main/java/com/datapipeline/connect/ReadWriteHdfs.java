@@ -13,6 +13,7 @@ import org.apache.flink.util.Collector;
 // 要将服务器上Hadoop安装目录下的 core-site.xml 和 hdfs-site.xml 放在当前项目的resources目录下
 
 // 经过测试，即使本地配置了远程的免密登录，依然会报错：连接拒接，但是换成PCDN网络就没问题
+// TODO  在本地就能连接上hdfs ，在网页端可以访问相关的服务，比如访问50070端口
 public class ReadWriteHdfs {
 
   public static void main(String[] args) throws Exception {
