@@ -11,6 +11,8 @@ import org.apache.flink.util.Collector;
 
 // 从hdfs上读取文件，处理后再写入到hdfs上
 // 要将服务器上Hadoop安装目录下的 core-site.xml 和 hdfs-site.xml 放在当前项目的resources目录下
+
+// 经过测试，即使本地配置了远程的免密登录，依然会报错：连接拒接，但是换成PCDN网络就没问题
 public class ReadWriteHdfs {
 
   public static void main(String[] args) throws Exception {
@@ -26,7 +28,7 @@ public class ReadWriteHdfs {
               }
           }
       }).groupBy(0).sum(1);
-      hdfs.writeAsText("hdfs://n1:9000/tmp/8", FileSystem.WriteMode.OVERWRITE);
+      hdfs.writeAsText("hdfs://n1:9000/tmp/11", FileSystem.WriteMode.OVERWRITE);
       env.execute();
   }
 }
