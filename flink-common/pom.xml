@@ -100,6 +100,17 @@
             <version>3.12.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-runtime-web_2.12</artifactId>
+            <version>1.14.2</version>
+        </dependency>
+
         <!--log4j日志配置-->
         <dependency>
             <groupId>org.slf4j</groupId>
