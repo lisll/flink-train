@@ -38,11 +38,11 @@ public class ConcurrentHashMapDemo {
 //        conc.forEach(4,(key,value)-> System.out.println("key:"+key+",value:"+value));
 //
 //        //实现计算功能统计字符串出现次数
-//        ConcurrentHashMap<String, AtomicInteger> map = new ConcurrentHashMap<>();
-//        List<String> source = Arrays.asList("hello", "world", "hello", "welcome", "hello", "hello", "welcome", "simon");
-//        for(String str : source){
-//            map.computeIfAbsent(str,key->new AtomicInteger()).getAndIncrement();
-//        }
-//        System.out.println(map);
+        ConcurrentHashMap<String, AtomicInteger> map = new ConcurrentHashMap<>();
+        List<String> source = Arrays.asList("hello", "world", "hello", "welcome", "hello", "hello", "welcome", "simon");
+        for(String str : source){
+            map.computeIfAbsent(str,key->new AtomicInteger()).getAndIncrement();
+        }
+        System.out.println(map);
     }
 }
