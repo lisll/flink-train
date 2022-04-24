@@ -51,7 +51,7 @@ public class MethodHandlesDemo {
 //        staticHandle.bindTo(methodHandlesDemo).invoke(33,"oo");   // 调用静态方法时不能这么写，否则会报错
         // 测试获取构造方法的方法句柄   注意： 测试有参构造方法时，必须得有空参构造方法
         MethodHandle constructMethodHandle = ReflectUtils.getConstructMethodHandle(MethodHandlesDemo.class,String.class);
-        constructMethodHandle.invoke("mmmmmm");
+        constructMethodHandle.invoke("mmmm-mm");
 
 
 

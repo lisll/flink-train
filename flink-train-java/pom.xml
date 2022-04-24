@@ -24,68 +24,133 @@
         <version>3.5.0</version>
         <scope>compile</scope>
     </dependency>
+
+    <!--  flink 连接kafka-->
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka_${scala.binary.version}</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
 </dependencies>
 
-
     <build>
+        <finalName>NetworkFlowAnalysis</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.2</version>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>test-jar</goal>
-                        </goals>
-                    </execution>
-
-                    <execution>
-                        <id>BatchJobDemo</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <classifier>BatchJobDemo</classifier>
-
-                            <archive>
-                                <manifestEntries>
-                                    <program-class>com.datapipeline.api.BatchJobDemo</program-class>
-                                </manifestEntries>
-                            </archive>
-
-                            <includes>
-                                <include>com/datapipeline/api/BatchJobDemo.class</include>
-                                <include>com/datapipeline/api/BatchJobDemo$*.class</include>
-                            </includes>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>module-info.class</exclude>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-            <!--simplify the name of example JARs for build-target/examples -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <id>rename</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy file="${project.basedir}/target/flink-train-java-${project.version}-BatchJobDemo.jar" tofile="${project.basedir}/target/BatchJobDemo.jar" />
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-dependency-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>copy</id>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>copy-dependencies</goal>
+                                    </goals>
+                                    <configuration>
+                                        <excludeArtifactIds>junit</excludeArtifactIds>
+                                        <outputDirectory>${project.build.directory}/../target/lib</outputDirectory>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+            -->
         </plugins>
     </build>
+
+    <!--这个 plugin主要是为了测试flink remote shuffle的-->
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--                <version>3.2.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>test-jar</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>BatchJobDemo</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>jar</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <classifier>BatchJobDemo</classifier>-->
+
+<!--                            <archive>-->
+<!--                                <manifestEntries>-->
+<!--                                    <program-class>com.datapipeline.api.BatchJobDemo</program-class>-->
+<!--                                </manifestEntries>-->
+<!--                            </archive>-->
+
+<!--                            <includes>-->
+<!--                                <include>com/datapipeline/api/BatchJobDemo.class</include>-->
+<!--                                <include>com/datapipeline/api/BatchJobDemo$*.class</include>-->
+<!--                            </includes>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+<!--            &lt;!&ndash;simplify the name of example JARs for build-target/examples &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-antrun-plugin</artifactId>-->
+<!--                <version>1.7</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>rename</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>run</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <target>-->
+<!--                                <copy file="${project.basedir}/target/flink-train-java-${project.version}-BatchJobDemo.jar" tofile="${project.basedir}/target/BatchJobDemo.jar" />-->
+<!--                            </target>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 
 
 </project>

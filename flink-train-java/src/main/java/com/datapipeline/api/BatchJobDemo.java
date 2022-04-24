@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
+/**
+ * 这个是用来测试flink remote shuffle 的
+ */
 public class BatchJobDemo {
     public static void main(String[] args) throws Exception {
         int numRecords = 1024;
