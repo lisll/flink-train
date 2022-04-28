@@ -110,6 +110,12 @@
             <artifactId>flink-runtime-web_2.12</artifactId>
             <version>1.14.2</version>
         </dependency>
+        <!-- 解析JSON格式的数据-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.28</version>
+        </dependency>
 
         <!--log4j日志配置-->
         <dependency>
