@@ -1,7 +1,10 @@
 package com.datapipeline.map;
 
+import com.google.common.collect.MapMaker;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -29,10 +32,24 @@ import java.util.concurrent.atomic.AtomicInteger;
  *     }
  */
 public class ConcurrentHashMapDemo {
+    private static final Map<String, Object> WEB_CONFIG_CACHE =
+            new MapMaker().concurrencyLevel(5).initialCapacity(50).makeMap();
     public static void main(String[] args) {
         ConcurrentHashMap<String, String> conc = new ConcurrentHashMap<>();
         String put = conc.put("hello", "worlds");
         System.out.println("put->"+put);
+
+        WEB_CONFIG_CACHE.put("dp-thrall1","objec");
+
+        // 如果有，就取出这个值，如果没有就执行后面的Function函数
+        WEB_CONFIG_CACHE.computeIfAbsent("dp-thrall",key ->{
+            return "hello";
+        });
+
+        WEB_CONFIG_CACHE.forEach((key,value)->{
+            System.out.println(key);
+            System.out.println(value);
+        });
 
 //        conc.computeIfAbsent("hello", (key)->key.toUpperCase());
 //        conc.forEach(4,(key,value)-> System.out.println("key:"+key+",value:"+value));

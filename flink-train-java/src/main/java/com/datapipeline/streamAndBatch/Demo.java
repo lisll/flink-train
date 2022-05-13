@@ -10,6 +10,7 @@ public enum Demo {
         }
 
         public int getint(int a, int b){
+            System.out.println("ONE 中的 getint 方法被调用");
             return a+b;
         }
     },
@@ -19,8 +20,9 @@ public enum Demo {
             return new int[0];
         }
 
-        public int[] getint(int a , int b){
-           return IntStream.range(a,b).toArray();
+        public int getint(int a , int b){
+            System.out.println("TWO中的getint方法被调用");
+           return a+b;
        }
     };
 
@@ -28,4 +30,5 @@ public enum Demo {
     }
 
     public abstract int[] getOldSubtasks(int var1, int var2, int var3);
+    public abstract int getint(int a,int b);
 }
