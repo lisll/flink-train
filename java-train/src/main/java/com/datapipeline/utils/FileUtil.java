@@ -15,7 +15,6 @@ public class FileUtil {
         while(true){
             Thread.sleep(1000*20);
             writeLocalFile("/tmp/OSUtil.txt",osUtil.getMonitorInfo().toString());
-
         }
     }
 
