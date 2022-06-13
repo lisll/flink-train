@@ -14,6 +14,7 @@ public class LockDemo {
     public static void m2(){
         lock.lock();
         try {
+
             // 操作同步资源
         }finally {
             lock.unlock();
@@ -25,6 +26,7 @@ public class LockDemo {
     public static void m3(){
         AtomicInteger ato = new AtomicInteger();
         ato.incrementAndGet();
+
     }
 
 }
