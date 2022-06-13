@@ -26,6 +26,9 @@ public class LockDemo {
         AtomicInteger ato = new AtomicInteger();
         ato.incrementAndGet();
 
+
+        
+
     }
 
 }
