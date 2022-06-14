@@ -14,10 +14,9 @@ public class LockDemo {
     public static void m2(){
         lock.lock();
         try {
-            // 操作同步资源
+            // 操作同步资源å
         }finally {
             lock.unlock();
-
         }
     }
 
