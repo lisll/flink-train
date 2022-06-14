@@ -17,7 +17,6 @@ public class LockDemo {
             // 操作同步资源
         }finally {
             lock.unlock();
-
         }
     }
 
