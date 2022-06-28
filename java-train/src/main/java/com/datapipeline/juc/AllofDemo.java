@@ -44,17 +44,18 @@ public class AllofDemo {
     //              System.out.println("r-->" + v);
     //              System.out.println("t---> " + t);
     //            });
-    // 3.2 无返回值的Future，链式编程
-    //    CompletableFuture<Void> future =
-    //        allFutures
-    //            .thenRun(() -> pageFutures.forEach(CompletableFuture::join))
-    //            .whenComplete(
-    //                (v, t) -> {
-    //                  System.out.println("v->" + v);
-    //                  System.out.println("t->" + t);
-    //                });
+//     3.2 无返回值的Future，链式编程
+        CompletableFuture<Void> future =
+            allFutures
+                .thenRun(() -> pageFutures.forEach(CompletableFuture::join))
+                .whenComplete(
+                    (v, t) -> {
+                      System.out.println("v->" + v);
+                      System.out.println("t->" + t);
+                    });
 
     /** 无返回值的Future的，主要是利用是否有异常来判断所有的结果是否都正常执行了 */
+
     // 3.3 有返回值的Future，非链式编程，可以在 whenComplete中得到 v
     //        CompletableFuture<List<Object>> applyFuture =
     //            allFutures.thenApply(
@@ -67,15 +68,15 @@ public class AllofDemo {
     //                  System.out.println("t--->" + t);
     //                });
     // 3.4 有返回值的Future,采用链式编程 ，结果和非链式编程结果是一样的；
-    CompletableFuture<List<Object>> future =
-        allFutures
-            .thenApply(
-                value -> pageFutures.stream().map(p -> p.join()).collect(Collectors.toList()))
-            .whenComplete(
-                (v, t) -> {
-                  System.out.println("v->" + v);
-                  System.out.println("t->" + t);
-                });
+//    CompletableFuture<List<Object>> future =
+//        allFutures
+//            .thenApply(
+//                value -> pageFutures.stream().map(p -> p.join()).collect(Collectors.toList()))
+//            .whenComplete(
+//                (v, t) -> {
+//                  System.out.println("v->" + v);
+//                  System.out.println("t->" + t);
+//                });
     /** 有返回值的Future：可以在v中得到结果 */
     // 得到结果
     System.out.println("before->" + new SimpleDateFormat("yyyy-MM-dd mm:hh:ss").format(new Date()));
@@ -100,7 +101,7 @@ public class AllofDemo {
               if (links.contains("1")) {
                 try {
                   //                  int a = 10 / 0;
-                  TimeUnit.SECONDS.sleep(12);
+                  TimeUnit.SECONDS.sleep(8);
                 } catch (InterruptedException e) {
                   e.printStackTrace();
                 }

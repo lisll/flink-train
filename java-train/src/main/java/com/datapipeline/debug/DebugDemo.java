@@ -3,7 +3,7 @@ package com.datapipeline.debug;
 /**
  *  这个类主要为演示远程debug的demo
  */
-public class Demo {
+public class DebugDemo {
     public static void main(String[] args) throws InterruptedException {
         Thread.sleep(1000*30);
             print();
