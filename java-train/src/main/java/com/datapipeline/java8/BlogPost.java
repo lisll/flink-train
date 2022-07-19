@@ -1,6 +1,7 @@
 package com.datapipeline.java8;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class BlogPost {
     String title;
@@ -77,10 +78,38 @@ public class BlogPost {
         GUIDE
     }
 
-    public class Tuple {
+    public static class Tuple {
         String author;
-
         BlogPostType type;
+
+        public Tuple() {
+        }
+
+        public Tuple(String author, BlogPostType type) {
+            this.author = author;
+            this.type = type;
+        }
+
+        @Override
+        public String toString() {
+            return "Tuple{" +
+                    "author='" + author + '\'' +
+                    ", type=" + type +
+                    '}';
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple tuple = (Tuple) o;
+            return Objects.equals(author, tuple.author) && type == tuple.type;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(author, type);
+        }
 
         public String getAuthor() {
             return author;
