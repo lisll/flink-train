@@ -9,19 +9,30 @@ import java.util.concurrent.*;
 public class Test {
     public static void main(String[] args) throws InterruptedException {
 
-        HashSet<Integer> set = new HashSet<>();
-        HashSet<Integer> set1 = new HashSet<>();
-        set1.add(1);
-        set1.add(2);
-        set1.add(3);
-        System.out.println(set1.add(2));
-        System.out.println(set1.add(4));
+        DiffType diff = DiffType.DIFF;
+        test3(diff);
+
 //        for(Integer i : set1){
 //            System.out.println("i->"+i);
 //            if(set.contains(i)){
 //                System.out.println("????????");
 //            }
 //        }
+    }
+
+    public static void test3(DiffType diffType){
+        switch (diffType){
+            case LESS:
+                System.out.println("less");
+                System.out.println("less++");
+            case MORE:
+                System.out.println("more");
+                System.out.println("more++");
+            case DIFF:
+                System.out.println("diff");
+                System.out.println("diff++");
+                System.out.println("...............");
+        }
     }
 
     public void test(){
@@ -129,5 +140,12 @@ public class Test {
             }
             return null;
         });
+    }
+
+    public enum DiffType {
+        MORE,
+        LESS,
+        DIFF,
+        COUNT_DIFF
     }
 }

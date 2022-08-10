@@ -11,8 +11,19 @@ import static org.apache.commons.collections.CollectionUtils.isEmpty;
 
 public class ToIdentityMapDemo {
     public static void main(String[] args) {
-     test1();
+//     test1();
+     testcomputeIfAbsent();
     }
+    public static void testcomputeIfAbsent(){
+        HashMap<Integer, List<String>> map = new HashMap<>(8);
+        List<Integer> integers = Arrays.asList(1, 2, 3, 1, 2, 4);
+        for(Integer i : integers){
+            map.computeIfAbsent(i,v->new ArrayList<>(8));
+        }
+        System.out.println(".....");
+
+    }
+
     public static void test1(){
         ProcessDbBean processDbBean1 = new ProcessDbBean(1, 1, null, 1L, 1L, 1L, 1L);
         ProcessDbBean processDbBean2 = new ProcessDbBean(2, 2, null, 1L, 1L, 1L, 1L);

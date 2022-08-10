@@ -44,7 +44,7 @@ public class BatchDemo {
         AggregateOperator<Tuple2<String, Long>> sum = map.groupBy(0).sum(1);
         sum.writeAsText("/Users/sll/develop/flink/flink-train/flink-train/flink-train-java/target/wordcount.txt", FileSystem.WriteMode.OVERWRITE);
 //        System.out.println(env.getExecutionPlan());
-        env.execute();
+        env.execute("this is jobname");
 //        FlatMapOperator<String, Tuple2<String, Long>> map = text.flatMap((FlatMapFunction<String, Tuple2<String, Long>>)(s, collector) -> {
 //            String[] splits = s.toUpperCase().split("\\W+");
 //            for (String split : splits) {

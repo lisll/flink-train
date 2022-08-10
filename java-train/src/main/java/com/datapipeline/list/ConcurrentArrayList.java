@@ -1,11 +1,20 @@
 package com.datapipeline.list;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class ConcurrentArrayList {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
+        List<String> list = Arrays.asList("1","2","3","4");
+        String s = list.stream().findAny().orElse("999");
+        String first = list.stream().findFirst().orElse("");
+        System.out.println(s);
+        System.out.println(first);
+    }
+
+    public static void test() throws InterruptedException {
         List<Integer> list = Collections.synchronizedList(new ArrayList<Integer>());
 
         Runnable runnable = () -> {
