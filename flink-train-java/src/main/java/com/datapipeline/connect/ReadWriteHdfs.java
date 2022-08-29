@@ -8,7 +8,6 @@ import org.apache.flink.api.java.operators.DataSource;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.util.Collector;
-
 // 从hdfs上读取文件，处理后再写入到hdfs上
 // 要将服务器上Hadoop安装目录下的 core-site.xml 和 hdfs-site.xml 放在当前项目的resources目录下
 
