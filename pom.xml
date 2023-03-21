@@ -11,9 +11,6 @@
     <modules>
         <module>flink-runtime</module>
         <module>flink-train-java</module>
-
-
-
         <module>flink-kakfa-train</module>
         <module>flink-common</module>
         <module>flink-connectors</module>
