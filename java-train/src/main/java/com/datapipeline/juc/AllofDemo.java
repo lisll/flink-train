@@ -11,11 +11,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
- * 总结：
- * 1，allOf 函数是当所有的Future都返回结果时，才触发下一步计算
- * 2，任意一个Future报错，那么返回的值都为null
- * 3，多个Future报错时，返回的异常报错信息和最开始的那个报错一样
- *      例如： 下面的案例中，当循环到3时报了一个异常，循环到5时也报了一个异常，那么返回的异常就是3那个异常
+ * 总结： 1，allOf 函数是当所有的Future都返回结果时，才触发下一步计算 2，任意一个Future报错，那么返回的值都为null
+ * 3，多个Future报错时，返回的异常报错信息和最开始的那个报错一样 例如： 下面的案例中，当循环到3时报了一个异常，循环到5时也报了一个异常，那么返回的异常就是3那个异常
  */
 public class AllofDemo {
   public static void main(String[] args) throws Exception {
@@ -44,15 +41,15 @@ public class AllofDemo {
     //              System.out.println("r-->" + v);
     //              System.out.println("t---> " + t);
     //            });
-//     3.2 无返回值的Future，链式编程
-        CompletableFuture<Void> future =
-            allFutures
-                .thenRun(() -> pageFutures.forEach(CompletableFuture::join))
-                .whenComplete(
-                    (v, t) -> {
-                      System.out.println("v->" + v);
-                      System.out.println("t->" + t);
-                    });
+    //     3.2 无返回值的Future，链式编程
+    CompletableFuture<Void> future =
+        allFutures
+            .thenRun(() -> pageFutures.forEach(CompletableFuture::join))
+            .whenComplete(
+                (v, t) -> {
+                  System.out.println("v->" + v);
+                  System.out.println("t->" + t);
+                });
 
     /** 无返回值的Future的，主要是利用是否有异常来判断所有的结果是否都正常执行了 */
 
@@ -68,15 +65,15 @@ public class AllofDemo {
     //                  System.out.println("t--->" + t);
     //                });
     // 3.4 有返回值的Future,采用链式编程 ，结果和非链式编程结果是一样的；
-//    CompletableFuture<List<Object>> future =
-//        allFutures
-//            .thenApply(
-//                value -> pageFutures.stream().map(p -> p.join()).collect(Collectors.toList()))
-//            .whenComplete(
-//                (v, t) -> {
-//                  System.out.println("v->" + v);
-//                  System.out.println("t->" + t);
-//                });
+    //    CompletableFuture<List<Object>> future =
+    //        allFutures
+    //            .thenApply(
+    //                value -> pageFutures.stream().map(p -> p.join()).collect(Collectors.toList()))
+    //            .whenComplete(
+    //                (v, t) -> {
+    //                  System.out.println("v->" + v);
+    //                  System.out.println("t->" + t);
+    //                });
     /** 有返回值的Future：可以在v中得到结果 */
     // 得到结果
     System.out.println("before->" + new SimpleDateFormat("yyyy-MM-dd mm:hh:ss").format(new Date()));
