@@ -1,18 +1,19 @@
 package com.datapipeline.java8.java.time;
 
 import java.time.Clock;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.temporal.Temporal;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
-import java.time.temporal.TemporalAdjusters;
-import javax.xml.stream.Location;
 
-/** LocalTime 是 Java8 中新增的 时间类，主要包含了 小时、分钟、秒、纳秒 四个属性。 LocalTime类中提供了丰富的API，帮助我们更加简便的操作时间对象。 */
+
+/** LocalTime 是 Java8 中新增的 时间类，主要包含了 小时、分钟、秒、纳秒 四个属性。
+ *  LocalTime类中提供了丰富的API，帮助我们更加简便的操作时间对象。 */
 public class LocalTimeDemo {
 
   public static void main(String[] args) {
-    calcuLocalTime();
+    difference();
   }
 
   // 创建LocalTime类对象
@@ -119,5 +120,60 @@ public class LocalTimeDemo {
     System.out.println("减1纳秒 = " + nowPlusOrMin.minusNanos(1));
 
     System.out.println("===========================");
+  }
+  // 5, LocalTime 对象的大小比较
+  /**
+   *  *  5.比较时间对象的大小
+   *  *      time01.isAfter(time02) : time01 是否比 time02 晚
+   *  *      time01.isBefore(time02) : time01 是否比 time02 早
+   *  *
+   */
+  public static void equal(){
+    LocalTime now = LocalTime.now();
+    LocalTime of = LocalTime.of(23, 45);
+    System.out.println(now.isBefore(of));
+    System.out.println(now.isAfter(of));
+  }
+
+  // 6, LocalTiime 对象格式化为字符串
+  /**
+   *  *  6.时间对象 与 字符串的相互转化
+   *  *    6.1 时间对象 转 字符串 format() + DateTimeFormatter类
+   *  *        String format01 = localTime.format(DateTimeFormatter.ISO_TIME); // 21:56:17.05
+   *  *        String format02 = localTime.format(DateTimeFormatter.ISO_LOCAL_TIME); // 21:56:17.05
+   *  *        String format03 = localTime.format(DateTimeFormatter.ofPattern("HH--:--mm--:--ss")); // 21--:--56--:--17
+   *  *
+   *  *    6.2 字符串 转 时间对象 parse()
+   *  *         LocalTime timeParse01 = LocalTime.parse("21:53:53", DateTimeFormatter.ofPattern("HH:mm:ss"));
+   *  *
+   */
+  public static void parseString(){
+    LocalTime now = LocalTime.now(Clock.systemUTC());
+    System.out.println(now.format(DateTimeFormatter.ISO_TIME));
+    System.out.println(now.format(DateTimeFormatter.ISO_LOCAL_TIME));
+    System.out.println(now.format(DateTimeFormatter.ofPattern("HH--:--mm--:--ss")));
+    System.out.println(LocalTime.parse("21:54:56",DateTimeFormatter.ofPattern("HH:mm:ss")));
+  }
+
+  //7, 计算两个时间对象之间的时间差
+  /**
+   *  *  7.获取两个时间对象之间的差 Duration
+   *  *         Duration between = Duration.between(timeDuration01, timeDuration02);
+   *  *         between.toDays()
+   *  *         between.toHours() // 一共差多少个小时
+   *  *         between.toMinutes() // 一共差多少个分钟
+   *  *         between.toMillis() // 一共差多少毫秒
+   *  *         between.toNanos() // 一共差多少纳秒
+   *  *
+   */
+  public static void difference(){
+    LocalTime now = LocalTime.now();
+    LocalTime of = LocalTime.of(14, 6,23);
+    System.out.println(Duration.between(now,of));
+    System.out.println(Duration.between(now,of).toDays());
+    System.out.println(Duration.between(now,of).toHours());
+    System.out.println(Duration.between(now,of).toMinutes());
+    System.out.println(Duration.between(now,of).toMillis());
+    System.out.println(Duration.between(now,of).toNanos());
   }
 }
