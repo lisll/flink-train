@@ -13,6 +13,12 @@ import java.time.temporal.TemporalAdjuster;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * LocalDateTime 是 Java8 中提供的 日期+时间的对象，
+ * 日期 包含 年、月、日 信息
+ * 时间包含 小时、分钟、秒、纳秒 信息
+ * 此对象默认使用系统时区，例如中国使用 【东八区】
+ */
 public class LocalDateTimeDemo {
 
   public static void main(String[] args) {
@@ -21,20 +27,23 @@ public class LocalDateTimeDemo {
 
   // 1,创建LocalDateTime 对象
   /**
-   * * 1.创建日期时间对象 * 1.1 获取当前日期时间对象 * LocalTime.now() : 获取默认时区下的系统时钟的时间 * LocalTime.now(Clock clock)
-   * : 获取指定时钟的时间 * LocalTime.now(ZoneId zone) : 获取指定时区的、默认系统时钟的时间 * 【补充：获取所有时区信息的方式 ：
-   * ZoneId.getAvailableZoneIds()】 Asia/Shanghai * 1.2 获取指定日期时间对象 * LocalDateTime.of(int year, Month
-   * month, int dayOfMonth, int hour, int minute) : 指定 年、月（枚举值）、日、小时、分钟 * LocalDateTime.of(int year,
-   * Month month, int dayOfMonth, int hour, int minute, int second) : 指定 年、月（枚举值）、日、小时、分钟、秒 *
-   * LocalDateTime.of(int year, Month month, int dayOfMonth, int hour, int minute, int second, int
-   * nanoOfSecond) : 指定 年、月（枚举值）、日、小时、分钟、秒、纳秒 * LocalDateTime.of(int year, int month, int
-   * dayOfMonth, int hour, int minute) : 指定 年、月（数值）、日、小时、分钟 * LocalDateTime.of(int year, int month,
-   * int dayOfMonth, int hour, int minute, int second) : 指定 年、月（数值）、日、小时、分钟、秒 * LocalDateTime.of(int
-   * year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond) : 指定
-   * 年、月（数值）、日、小时、分钟、秒、纳秒 * LocalDateTime.of(LocalDate date, LocalTime time) : 指定 日期对象 和 时间对象 两个对象 *
-   * LocalDateTime ofInstant(Instant instant, ZoneId zone) : 指定时间戳对象 Instant 和 时区 * LocalDateTime
-   * ofEpochSecond(long epochSecond, int nanoOfSecond, ZoneOffset offset) : 指定 距离 1970-01-01
-   * 00:00:00 的秒数、纳秒数、偏移数，创建LocalDateTime对象 *
+   *  * 1.创建日期时间对象
+   *  *   1.1 获取当前日期时间对象
+   *  *       LocalDateTime.now() : 获取默认时区下的系统时钟的时间
+   *  *       LocalDateTime.now(Clock clock) : 获取指定时钟的时间
+   *  *       LocalDateTime.now(ZoneId zone) : 获取指定时区的、默认系统时钟的时间
+   *  *       【补充：获取所有时区信息的方式 ： ZoneId.getAvailableZoneIds()】 Asia/Shanghai
+   *  *   1.2 获取指定日期时间对象
+   *  *        LocalDateTime.of(int year, Month month, int dayOfMonth, int hour, int minute) : 指定 年、月（枚举值）、日、小时、分钟
+   *  *        LocalDateTime.of(int year, Month month, int dayOfMonth, int hour, int minute, int second) : 指定 年、月（枚举值）、日、小时、分钟、秒
+   *  *        LocalDateTime.of(int year, Month month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond) : 指定 年、月（枚举值）、日、小时、分钟、秒、纳秒
+   *  *        LocalDateTime.of(int year, int month, int dayOfMonth, int hour, int minute) : 指定 年、月（数值）、日、小时、分钟
+   *  *        LocalDateTime.of(int year, int month, int dayOfMonth, int hour, int minute, int second) : 指定 年、月（数值）、日、小时、分钟、秒
+   *  *        LocalDateTime.of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond) : 指定 年、月（数值）、日、小时、分钟、秒、纳秒
+   *  *        LocalDateTime.of(LocalDate date, LocalTime time) : 指定 日期对象 和 时间对象 两个对象
+   *  *        LocalDateTime ofInstant(Instant instant, ZoneId zone) : 指定时间戳对象 Instant 和 时区
+   *  *        LocalDateTime ofEpochSecond(long epochSecond, int nanoOfSecond, ZoneOffset offset) : 指定 距离 1970-01-01 00:00:00 的秒数、纳秒数、偏移数，创建LocalDateTime对象
+   *  *
    */
   public static void getLocalDateTime() {
     System.out.println(LocalDateTime.now());
@@ -62,10 +71,22 @@ public class LocalDateTimeDemo {
 
   //  2 ,获取LocalDateTime对象的属性信息
   /**
-   * * 2.获取日期时间对象的信息 * toLocalDate() : 返回一个LocalDate 对象 * toLocalTime() : 返回一个LocalTime 对象 * *
-   * getYear() : 获取年分信息 * getMonth() : 获取月份信息（枚举类型） * getMonthValue() : 获取月份的数字（数值类型） *
-   * getDayOfMonth() : 获取日期信息 * getDayOfWeek() : 获取星期几 （枚举类型） * getDayOfYear() : 获取这一年的第几天 * *
-   * getHour() : 获取小时信息 * getMinute() : 获取分钟信息 * getSecond() : 获取秒 * getNano() : 获取纳秒 *
+   *  * 2.获取日期时间对象的信息
+   *  *      toLocalDate() : 返回一个LocalDate 对象
+   *  *      toLocalTime() : 返回一个LocalTime 对象
+   *  *
+   *  *      getYear() : 获取年分信息
+   *  *      getMonth() : 获取月份信息（枚举类型）
+   *  *      getMonthValue() : 获取月份的数字（数值类型）
+   *  *      getDayOfMonth() : 获取日期信息
+   *  *      getDayOfWeek() : 获取星期几 （枚举类型）
+   *  *      getDayOfYear() : 获取这一年的第几天
+   *  *
+   *  *      getHour() : 获取小时信息
+   *  *      getMinute() : 获取分钟信息
+   *  *      getSecond() : 获取秒
+   *  *      getNano() :  获取纳秒
+   *  *
    */
   public static void attributeOfLocalDateTime() {
     LocalDateTime nowDateTime = LocalDateTime.now(ZoneId.systemDefault());
@@ -84,10 +105,18 @@ public class LocalDateTimeDemo {
   }
   // 3, 指定LocalDateTime对象的属性信息
   /**
-   * * 3.指定日期时间对象的 年、月、日、时、分、秒、纳秒 * withYear(int) : 指定年分 * withMonth(int) : 指定月份 *
-   * withDayOfMonth(int) : 指定日期 * withDayOfYear(int) : 指定一年中的多少天 * withHour(int) : 指定小时 *
-   * withMinute(int) : 指定分钟 * withSecond(int) : 指定秒 * withNano(int) : 指定纳秒 * *
-   * with(TemporalAdjuster) : 时间矫正器 *
+   *  * 3.指定日期时间对象的 年、月、日、时、分、秒、纳秒
+   *  *      withYear(int) : 指定年分
+   *  *      withMonth(int) : 指定月份
+   *  *      withDayOfMonth(int) : 指定日期
+   *  *      withDayOfYear(int) : 指定一年中的多少天
+   *  *      withHour(int) : 指定小时
+   *  *      withMinute(int) : 指定分钟
+   *  *      withSecond(int) : 指定秒
+   *  *      withNano(int) : 指定纳秒
+   *  *
+   *  *      with(TemporalAdjuster) : 时间矫正器
+   *  *
    */
   public static void modifyLocalDateTime() {
     LocalDateTime now = LocalDateTime.now(ZoneId.systemDefault());
@@ -111,11 +140,25 @@ public class LocalDateTimeDemo {
 
   // 4, 增加/减去 年月日时分秒信息
   /**
-   * * 4.加上 或者 减去 时、分、秒、纳秒 * plusYears(long) : 加几年 * plusMonths(long) : 加几个月 * plusDays(long) : 加几天
-   * * plusWeeks(long) : 加几个周 * plusHours(long) : 加几个小时 * plusMinutes(long) : 加几分钟 *
-   * plusSeconds(long) : 加几秒 * plusNanos(long) : 加几个纳秒 * * minusYears(long) : 减几年 *
-   * minusMonths(long) : 减几个月 * minusDays(long) : 减几天 * minusWeeks(long) : 减几个周 * minusHours(long) :
-   * 减几个小时 * minusMinutes(long) : 减几分钟 * minusSeconds(long) : 减几秒 * minusNanos(long) : 减几个纳秒 *
+   * * 4.加上 或者 减去 时、分、秒、纳秒
+   *  *         plusYears(long) : 加几年
+   *  *         plusMonths(long) : 加几个月
+   *  *         plusDays(long) : 加几天
+   *  *         plusWeeks(long) : 加几个周
+   *  *         plusHours(long) : 加几个小时
+   *  *         plusMinutes(long) : 加几分钟
+   *  *         plusSeconds(long) : 加几秒
+   *  *         plusNanos(long) : 加几个纳秒
+   *  *
+   *  *         minusYears(long) : 减几年
+   *  *         minusMonths(long) : 减几个月
+   *  *         minusDays(long) : 减几天
+   *  *         minusWeeks(long) : 减几个周
+   *  *         minusHours(long) : 减几个小时
+   *  *         minusMinutes(long) : 减几分钟
+   *  *         minusSeconds(long) : 减几秒
+   *  *         minusNanos(long) : 减几个纳秒
+   *  *
    */
   public static void calcuLocalDateTime() {
     LocalDateTime now = LocalDateTime.now(ZoneId.systemDefault());
@@ -135,9 +178,11 @@ public class LocalDateTimeDemo {
 
   // 5, 比较两个日期时间的大小
   /**
-   * * 5.比较两个日期时间对象的大小 * dateTime01.isEqual(dateTime02) : 两个日期时间对象是否相等 *
-   * dateTime01.isAfter(dateTime02) : dateTime01 是否 比 dateTime02 晚 *
-   * dateTiime01.isBefore(dateTime02) : dateTime01 是否 比 dateTime02 早 *
+   * * 5.比较两个日期时间对象的大小
+   *  *      dateTime01.isEqual(dateTime02) : 两个日期时间对象是否相等
+   *  *      dateTime01.isAfter(dateTime02) : dateTime01 是否 比 dateTime02 晚
+   *  *      dateTiime01.isBefore(dateTime02) : dateTime01 是否 比 dateTime02 早
+   *  *
    */
   public static void equal() {
     LocalDateTime now = LocalDateTime.now(ZoneId.systemDefault());
