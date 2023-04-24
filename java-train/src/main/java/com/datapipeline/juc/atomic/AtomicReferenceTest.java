@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-/** 参考文章： https://www.cnblogs.com/liumy/p/11632878.html https://www.tpvlog.com/article/30 */
+/** 参考文章： https://www.cnblogs.com/liumy/p/11632878.html https://www.tpvlog.com/article/30
+ *           https://www.cnblogs.com/xfeiyun/p/16410785.html
+ * */
 public class AtomicReferenceTest {
 
   public static void main(String[] args) throws Exception {

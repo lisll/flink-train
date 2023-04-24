@@ -6,6 +6,10 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 /** LocalTime 是 Java8 中新增的 时间类，主要包含了 小时、分钟、秒、纳秒 四个属性。
@@ -13,7 +17,17 @@ import java.time.temporal.TemporalAdjuster;
 public class LocalTimeDemo {
 
   public static void main(String[] args) {
-    difference();
+    ArrayList<Integer> integers = new ArrayList<>();
+    for(int i = 0;i<10;i++){
+      integers.add(new Random().nextInt(10));
+    }
+    for (Integer integer : integers) {
+      System.out.println(integer);
+    }
+    long count = new Random().ints(10, 20).limit(10).count();
+    System.out.println(count);
+//    IntStream.range(1, 3).forEach(System.out::println);
+//    difference();
   }
 
   // 创建LocalTime类对象

@@ -15,6 +15,7 @@
         <module>flink-common</module>
         <module>flink-connectors</module>
         <module>java-train</module>
+      <module>flink-metrics</module>
     </modules>
 
     <properties>
