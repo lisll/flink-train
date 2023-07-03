@@ -41,6 +41,51 @@
         <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
         <version>${flink.version}</version>
     </dependency>
+
+
+
+
+    <!-- 如果不引入 flink-table 相关依赖，则会报错：
+Caused by: java.lang.ClassNotFoundException:
+org.apache.flink.connector.base.source.reader.RecordEmitter
+引入以下依赖可以解决这个问题（引入某些其它的 flink-table相关依赖也可）
+-->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-table-api-java-bridge_${scala.binary.version}</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+    <!-- 添加 CEP 相关依赖-->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-cep_2.11</artifactId>
+        <version>1.10.2</version>
+    </dependency>
+
+    <!-- 添加德鲁伊连接池依赖-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.1.16</version>
+    </dependency>
+    <!-- Flink SQL 相关依赖-->
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-table-planner_2.12</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-streaming-java_2.11</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-table-common</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+
 </dependencies>
 
     <build>

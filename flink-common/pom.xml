@@ -54,7 +54,6 @@
             <version>${hadoop.version}</version>
         </dependency>
 
-
         <!--Flink Local模式下启动Queryable State服务-->
         <dependency>
             <groupId>org.apache.flink</groupId>
