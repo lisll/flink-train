@@ -16,11 +16,13 @@
         <module>flink-connectors</module>
         <module>java-train</module>
       <module>flink-metrics</module>
+        <module>flink-sql</module>
     </modules>
 
     <properties>
         <!-- Data Pipeline -->
         <nexus.ip>registry.datapipeline.com</nexus.ip>
+
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flink.version>1.14.4</flink.version>

@@ -60,6 +60,12 @@ org.apache.flink.connector.base.source.reader.RecordEmitter
         <groupId>org.apache.flink</groupId>
         <artifactId>flink-cep_2.11</artifactId>
         <version>1.10.2</version>
+        <exclusions>
+            <exclusion>
+                <artifactId>flink-shaded-guava</artifactId>
+                <groupId>org.apache.flink</groupId>
+            </exclusion>
+        </exclusions>
     </dependency>
 
     <!-- 添加德鲁伊连接池依赖-->
@@ -83,6 +89,12 @@ org.apache.flink.connector.base.source.reader.RecordEmitter
     <dependency>
         <groupId>org.apache.flink</groupId>
         <artifactId>flink-table-common</artifactId>
+        <version>${flink.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.flink</groupId>
+        <artifactId>flink-connector-hive_${scala.binary.version}</artifactId>
         <version>${flink.version}</version>
     </dependency>
 
