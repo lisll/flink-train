@@ -2,6 +2,8 @@ package com.datapipeline.model;
 
 public class ApacheLogEvent {
     private String ip;
+
+
     private String userId;
     private Long timestamp;
     private String method;
